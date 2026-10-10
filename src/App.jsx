@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import CartItem from './components/CartItem';
 import AboutUs from './components/AboutUs';
-import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar';
 import './App.css';
 
 function App() {
@@ -32,25 +32,9 @@ function LandingPage() {
 }
 
 function MainApp() {
-  const cartItems = useSelector(state => state.cart.items);
-  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-brand">
-          <Link to="/" style={{color: 'white', textDecoration: 'none', fontSize: '1.5rem'}}>Paradise Nursery</Link>
-        </div>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/products">Plants</Link>
-          <Link to="/cart" className="cart-icon">
-            Cart
-            {totalQuantity > 0 && <span className="cart-count">{totalQuantity}</span>}
-          </Link>
-        </div>
-      </nav>
-      
+      <Navbar />
       <Routes>
         <Route path="/products" element={
           <div>
